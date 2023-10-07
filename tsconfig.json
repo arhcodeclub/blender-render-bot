@@ -1,0 +1,12 @@
+{
+	"moduleResolution": "node",
+	"compilerOptions": {
+		"module": "Node16",
+		"moduleResolution": "Node16",
+		"resolveJsonModule": true,
+		"outDir": "dist",
+		"lib": ["ESNext"],
+		"allowJs": true
+	},
+	"include": ["src/**/*"]
+}
