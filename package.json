@@ -1,5 +1,5 @@
 {
-	"name": "bobthebot",
+	"name": "blender-render-bot",
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
@@ -18,10 +18,8 @@
 	"author": "Tetie#4242",
 	"license": "Apache-2.0",
 	"dependencies": {
-		"@types/node-cron": "^3.0.7",
 		"discord.js": "^14.8.0",
 		"dotenv": "^16.0.3",
-		"mongoose": "^7.0.0",
 		"ms": "^3.0.0-canary.1",
 		"node-cron": "^3.0.2",
 		"pino": "^8.11.0",
