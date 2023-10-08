@@ -16,35 +16,37 @@ export const RequiredPerms = {
 	user: [],
 } as const;
 
-export const SubmitCommand: ChatInputCommand = {
-	name: "submit",
-	description: "bottom text",
-	options: [
-		{
-			name: "render",
-			description: "bottom text: the sequel",
-			type: ApplicationCommandOptionType.Attachment,
-			required: true,
-		},
-	],
+export const OpenCommand: ChatInputCommand = {
+	name: "open",
+	description: "Open het stemmen en sluit submissions",
 	default_member_permissions: permissionToString(RequiredPerms.user),
 	dm_permission: true,
 } as const;
 
-export async function execute(interaction: ChatInputCommandInteraction) {
-	const render = interaction.options.getAttachment("render", true);
+export async function execute(
+	interaction: ChatInputCommandInteraction<"cached">
+) {
+	// todo: verander id in production
+	if (!interaction.member.roles.cache.has("1160504969183637525")) {
+		return interaction.reply({
+			content: "Ge kunt da ni doen",
+			ephemeral: true,
+		});
+	}
 
-	// todo: return als het stemmen al begonnen is
-
-	const embed = new EmbedBuilder().setImage(render.url);
+	const embed = new EmbedBuilder()
+		.setTitle("Stemmen")
+		.setDescription(
+			"Weer je het zeker? Zodra stemmen geopend zijn is het niet meer mogelijk om renders in te sturen."
+		);
 
 	const confirm = new ButtonBuilder()
-		.setCustomId("confirm-render")
-		.setLabel("Confirm")
+		.setCustomId("confirm-open")
+		.setLabel("Open")
 		.setStyle(ButtonStyle.Danger);
 
 	const cancel = new ButtonBuilder()
-		.setCustomId("cancel-render")
+		.setCustomId("cancel-open")
 		.setLabel("Cancel")
 		.setStyle(ButtonStyle.Secondary);
 
