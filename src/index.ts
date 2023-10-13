@@ -6,8 +6,6 @@ import dotenv from "dotenv";
 import readdirp from "readdirp";
 import { logger, getCommandData, ExtendedClient } from "./utils/index.js";
 
-import * as json from "./db/database.json";
-
 dotenv.config();
 
 if (!process.env.CLIENT_ID) {

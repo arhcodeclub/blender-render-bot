@@ -13,7 +13,7 @@ export function writeToDatabase(renderData: render) {
 	let obj;
 	let json;
 
-	const path = new URL("../../db/database.json", import.meta.url).pathname;
+	const path = new URL("../../../db/database.json", import.meta.url).pathname;
 
 	console.log(path);
 
@@ -32,8 +32,7 @@ export function writeToDatabase(renderData: render) {
 }
 
 export function readFromDatabase() {
-	const path =
-		"/Users/teijevisser/Documents/GitHub/blender-render-bot/dist/db/database.json";
+	const path = new URL("../../../db/database.json", import.meta.url).pathname;
 
 	const obj = fs.readFileSync(path, "utf8");
 
