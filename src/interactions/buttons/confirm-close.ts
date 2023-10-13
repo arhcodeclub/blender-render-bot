@@ -18,6 +18,7 @@ export async function execute(interaction: ButtonInteraction<"cached">) {
 		example1: {
 			title: "example1_title",
 			url: "https://media.discordapp.net/attachments/1036359877473341563/1162398027680587947/bird.webp?ex=653bca86&is=65295586&hm=e7b7a18c24f20ce0af7fbb118b561fa48c4186f0993d3f4d539672cfbf33e09c&=&width=732&height=888",
+			userId: "",
 			votes: 1,
 		},
 		example2: {

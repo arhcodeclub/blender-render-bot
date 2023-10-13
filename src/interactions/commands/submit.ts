@@ -8,8 +8,10 @@ import {
 import type { ChatInputCommandInteraction } from "discord.js";
 import {
 	permissionToString,
+	writeToDatabase,
 	type ChatInputCommand,
 } from "../../utils/index.js";
+import { ids } from "../../constants.js";
 
 export const RequiredPerms = {
 	bot: [],
@@ -37,7 +39,9 @@ export const SubmitCommand: ChatInputCommand = {
 	dm_permission: true,
 } as const;
 
-export async function execute(interaction: ChatInputCommandInteraction) {
+export async function execute(
+	interaction: ChatInputCommandInteraction<"cached">
+) {
 	const render = interaction.options.getAttachment("render", true);
 
 	// todo: return als het stemmen al begonnen is
@@ -74,10 +78,14 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 		.then(async (buttonI) => {
 			const title = interaction.options.getString("title", true);
 
-			// todo: database stuff
+			writeToDatabase({
+				title: title,
+				url: render.url,
+				userId: interaction.user.id,
+				votes: 0,
+			});
 
-			// Max 1 render per user
-			// todo: contestant role
+			interaction.member.roles.add(ids.roles.contestant);
 
 			await buttonI.update({
 				content: "Okidoki",

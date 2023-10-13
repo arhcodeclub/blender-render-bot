@@ -6,6 +6,7 @@ export * from "./helpers/damerau.js";
 export * from "./helpers/getCommandData.js";
 export * from "./helpers/processPermissions.js";
 export * from "./helpers/returnError.js";
+export * from "./helpers/database.js";
 // Types
 export * from "./types/ApplicationCommands.js";
 export * from "./types/Github.js";
