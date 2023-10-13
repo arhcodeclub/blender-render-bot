@@ -16,9 +16,9 @@ export const RequiredPerms = {
 	user: [],
 } as const;
 
-export const OpenCommand: ChatInputCommand = {
-	name: "open",
-	description: "Open het stemmen en sluit submissions",
+export const CloseCommand: ChatInputCommand = {
+	name: "close",
+	description: "Sluit het stemmen",
 	default_member_permissions: permissionToString(RequiredPerms.user),
 	dm_permission: true,
 } as const;
@@ -36,16 +36,16 @@ export async function execute(
 	const embed = new EmbedBuilder()
 		.setTitle("Stemmen")
 		.setDescription(
-			"Weet je het zeker? Zodra stemmen geopend zijn is het niet meer mogelijk om renders in te sturen."
+			"Weet je het zeker? Zodra stemmen gesloten zijn kan niemand meer stemmen."
 		);
 
 	const confirm = new ButtonBuilder()
-		.setCustomId("confirm-open")
-		.setLabel("Open")
+		.setCustomId("confirm-close")
+		.setLabel("Close")
 		.setStyle(ButtonStyle.Danger);
 
 	const cancel = new ButtonBuilder()
-		.setCustomId("cancel-open")
+		.setCustomId("cancel-close")
 		.setLabel("Cancel")
 		.setStyle(ButtonStyle.Secondary);
 

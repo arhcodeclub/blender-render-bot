@@ -26,6 +26,12 @@ export const SubmitCommand: ChatInputCommand = {
 			type: ApplicationCommandOptionType.Attachment,
 			required: true,
 		},
+		{
+			name: "title",
+			description: "bottom text: the threequel",
+			type: ApplicationCommandOptionType.String,
+			required: true,
+		},
 	],
 	default_member_permissions: permissionToString(RequiredPerms.user),
 	dm_permission: true,
@@ -58,4 +64,25 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 		components: [row],
 		ephemeral: true,
 	});
+
+	await interaction.channel
+		.awaitMessageComponent({
+			filter: (i) =>
+				i.user.id === interaction.user.id && i.customId === "confirm-render",
+			time: 60000,
+		})
+		.then(async (buttonI) => {
+			const title = interaction.options.getString("title", true);
+
+			// todo: database stuff
+
+			// Max 1 render per user
+			// todo: contestant role
+
+			await buttonI.update({
+				content: "Okidoki",
+				embeds: [embed],
+				components: [],
+			});
+		});
 }

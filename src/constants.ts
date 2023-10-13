@@ -24,3 +24,13 @@ export const enum Color {
 	DiscordEmbedBackground = 0x2f3136, // jet/dark grey
 	DiscordGem = 0xeb459e, // fuchsia
 }
+
+export const ids = {
+	roles: {
+		contestant: "1162391576564215911",
+		judge: "1160504969183637525",
+	},
+	channels: {
+		stemmen: "1162391401707868233",
+	},
+};
