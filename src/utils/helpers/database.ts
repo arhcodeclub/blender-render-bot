@@ -1,5 +1,5 @@
 import { type Snowflake } from "discord.js";
-import { fileURLToPath, URL } from "node:url";
+import { URL } from "node:url";
 import fs from "node:fs";
 
 interface render {
@@ -13,9 +13,9 @@ export function writeToDatabase(renderData: render) {
 	let obj;
 	let json;
 
-	// todo: don't hardcode
-	const path =
-		"/Users/teijevisser/Documents/GitHub/blender-render-bot/dist/db/database.json";
+	const path = new URL("../../db/database.json", import.meta.url).pathname;
+
+	console.log(path);
 
 	fs.readFile(path, "utf8", function readFileCallback(err, data) {
 		if (err) {
