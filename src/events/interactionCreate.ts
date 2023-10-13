@@ -139,13 +139,13 @@ export default class implements Event {
 				logger.error(error);
 			}
 		} else if (interaction.isButton()) {
-			if (interaction.message.interaction?.user.id !== interaction.user.id) {
+			/*if (interaction.message.interaction?.user.id !== interaction.user.id) {
 				await interaction.reply({
 					content: "This button is not for you!",
 					ephemeral: true,
 				});
 				return;
-			}
+			}*/
 
 			if (!interaction.inCachedGuild() && !interaction.channel?.isDMBased()) {
 				logger.error("Guild failed to cache");
@@ -153,6 +153,7 @@ export default class implements Event {
 			}
 
 			const button = client.buttons.get(interaction.customId);
+
 			if (!button) {
 				logger.error(`Button ${interaction.customId} not found.`);
 				logInteractionError(interaction);

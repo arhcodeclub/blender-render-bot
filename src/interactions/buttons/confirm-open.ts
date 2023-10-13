@@ -1,4 +1,10 @@
-import { type ButtonInteraction, type TextChannel } from "discord.js";
+import {
+	ButtonBuilder,
+	ButtonStyle,
+	ActionRowBuilder,
+	type ButtonInteraction,
+	type TextChannel,
+} from "discord.js";
 import { readFromDatabase } from "../../utils/helpers/database.js";
 import { ids } from "../../constants.js";
 
@@ -17,10 +23,22 @@ export async function execute(interaction: ButtonInteraction<"cached">) {
 
 	for (const render of renders.renders) {
 		await channel.send({
-			content: `<@${render.userId}>`,
+			content: `${render.title} - <@${render.userId}>`,
 			files: [render.url],
 		});
 	}
+
+	const voteButton = new ButtonBuilder()
+		.setCustomId("vote-render")
+		.setLabel("Vote")
+		.setStyle(ButtonStyle.Primary);
+
+	channel.send({
+		content: "Stem op je favoriete render",
+		components: [
+			new ActionRowBuilder<ButtonBuilder>().addComponents(voteButton),
+		],
+	});
 
 	return interaction.reply({
 		content: `Okidoki; ${channel}`,

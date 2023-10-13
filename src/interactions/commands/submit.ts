@@ -8,8 +8,8 @@ import {
 import type { ChatInputCommandInteraction } from "discord.js";
 import {
 	permissionToString,
-	writeToDatabase,
 	type ChatInputCommand,
+	addRender,
 } from "../../utils/index.js";
 import { ids } from "../../constants.js";
 
@@ -78,11 +78,11 @@ export async function execute(
 		.then(async (buttonI) => {
 			const title = interaction.options.getString("title", true);
 
-			writeToDatabase({
+			addRender({
 				title: title,
 				url: render.url,
 				userId: interaction.user.id,
-				votes: 0,
+				votes: [],
 			});
 
 			interaction.member.roles.add(ids.roles.contestant);

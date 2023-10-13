@@ -2,14 +2,20 @@ import { type Snowflake } from "discord.js";
 import { URL } from "node:url";
 import fs from "node:fs";
 
+interface votes {
+	voterId: Snowflake;
+}
+
 interface render {
 	title: string;
 	url: string;
 	userId: Snowflake;
-	votes: number;
+	votes: votes[];
 }
 
-export function writeToDatabase(renderData: render) {
+export function addVotes(votes) {}
+
+export function addRender(renderData: render) {
 	let obj;
 	let json;
 
